@@ -1,0 +1,179 @@
+import os
+from zipfile import ZipFile
+from PIL import Image, ImageDraw, ImageFont
+
+# ---------------- Setup ----------------
+project = "AyzaanCateringWebsite"
+img_dir = os.path.join(project, "images")
+os.makedirs(img_dir, exist_ok=True)
+
+def make_img(path, size, text):
+    img = Image.new("RGB", size, (17,17,17))
+    draw = ImageDraw.Draw(img)
+    try:
+        font = ImageFont.truetype("arial.ttf", 40)
+    except:
+        font = ImageFont.load_default()
+    w,h = draw.textsize(text, font=font)
+    draw.text(((size[0]-w)/2, (size[1]-h)/2), text, fill=(255,215,0), font=font)
+    img.save(path)
+
+make_img(os.path.join(img_dir,"logo.png"), (400,400), "Ayzaan Catering")
+make_img(os.path.join(img_dir,"hero.jpg"), (1400,700), "Ayzaan Catering\nExquisite Catering")
+
+# ---------------- HTML ----------------
+html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayzaan Catering</title>
+<style>
+body{{font-family:Arial,sans-serif;margin:0;padding:0;background:#111;color:#eee}}
+h1,h2,h3{{color:#ffd700;text-align:center}}
+nav{{display:flex;justify-content:space-between;align-items:center;background:#000;padding:.8rem 1rem;position:sticky;top:0;z-index:1000}}
+nav ul{{list-style:none;display:flex;gap:1rem;margin:0}}
+nav ul li a{{color:#fff;text-decoration:none;font-weight:600}}
+nav ul li a:hover{{color:#111;background:#ffd700;padding:.3rem .5rem;border-radius:6px}}
+.hero{{background:url('images/hero.jpg')center/cover no-repeat;text-align:center;padding:6rem 1rem}}
+.hero h1{{font-size:2.6rem;margin:0}}
+.hero p{{color:#f5e9b3}}
+.button{{display:inline-block;background:#ffd700;color:#111;padding:.7rem 1.2rem;border-radius:8px;text-decoration:none;font-weight:700}}
+.container{{max-width:1200px;margin:0 auto;padding:2rem 1rem}}
+.menu-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem}}
+.menu-card{{border:2px solid #ffd700;border-radius:10px;padding:1rem;background:rgba(255,255,255,0.05)}}
+.menu-card ul{{padding-left:1.2rem;text-align:left}}
+input,textarea{{width:100%;padding:.7rem;border-radius:6px;border:none;margin-bottom:.8rem;background:#222;color:#fff}}
+input[type=submit]{{background:#ffd700;color:#111;font-weight:700;cursor:pointer}}
+footer{{background:#000;text-align:center;padding:1rem;color:#bbb}}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="#home"><img src="images/logo.png" height="60"></a>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#packages">Packages</a></li>
+<li><a href="#tiffin">Tiffin</a></li>
+<li><a href="#menu">Menu</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<section id="home" class="hero">
+<h1>Ayzaan Catering</h1>
+<p>Delivering exquisite catering for every occasion</p>
+<a href="#packages" class="button">Explore Menu</a>
+</section>
+
+<section id="packages" class="container">
+<h2>Event Packages (per person)</h2>
+<div class="menu-grid">
+<div class="menu-card">
+<h3>Silver — £15.00</h3>
+<p>Choose 1 Starter • 1 Main • 1 Side • 1 Dessert</p>
+<ul><li>Starters: Samosa, Pakora, Spring Rolls, Chicken Dumplings</li>
+<li>Mains: Chicken Curry, Lamb Curry, Beef Bhunna, Chicken Stir Fry</li>
+<li>Sides: Pillau Rice, Naan, Bombay Aloo</li>
+<li>Desserts: Rice Pudding, Gulab Jamun, Cupcake</li></ul>
+</div>
+<div class="menu-card">
+<h3>Gold — £18.99</h3>
+<p>Choose 2 Starters • 2 Mains • 2 Sides • 1 Dessert</p>
+<ul><li>Starters: Chicken Wings, Sheek Kebab, Falafel Wraps, Samosa</li>
+<li>Mains: Lamb Biryani, Chicken Jalfrezi, Beef Bhunna, Vegan Pizza</li>
+<li>Sides: Rice, Saag Paneer, Salad, Onion Rings, Naan</li>
+<li>Desserts: Caramel Tart, Brownie, Gajar Halwa, Fruit Platter</li></ul>
+</div>
+<div class="menu-card">
+<h3>Platinum — £24.99</h3>
+<p>Choose 3 Starters • 3 Mains • 3 Sides • 2 Desserts • Drinks</p>
+<ul><li>Starters: BBQ Wings, Chicken Tikka, Lamb Chops, Pakoras</li>
+<li>Mains: King Prawn Curry, Lamb Chop Bhunna, Chicken Tikka Pie</li>
+<li>Sides: Aloo Gobi, Mushroom Bhuna, Tarka Daal, Salad, Rice/Naan</li>
+<li>Desserts: School Cake, Gulab Jamun w/ Ice Cream, Mango, Brownie</li></ul>
+</div>
+</div>
+</section>
+
+<section id="tiffin" class="container">
+<h2>Tiffin Meal Boxes</h2>
+<div class="menu-grid">
+<div class="menu-card"><h3>Classic — £8.99</h3><ul>
+<li>Main: Chicken/Lamb/Beef/Vegetable Curry</li>
+<li>Side: Pillau Rice / Naan</li>
+<li>Snack: Samosa / Pakora</li>
+<li>Salad: Mixed Leaf / Desi Salad</li>
+<li>Dessert: Gulab Jamun / Cupcake / Rice Pudding</li></ul></div>
+<div class="menu-card"><h3>Premium — £10.99</h3><ul>
+<li>Main: Chicken/Lamb Jalfrezi / Stir Fry</li>
+<li>Side: Fried Rice / Naan</li>
+<li>Snack: Spring Roll / Dumplings / Pakora</li>
+<li>Veg: Aloo Gobi / Bhindi Bhaji / Saag Paneer</li>
+<li>Dessert: Tart / Brownie / Fruit</li></ul></div>
+<div class="menu-card"><h3>Vegan — £9.99</h3><ul>
+<li>Main: Vegan Chilli / Chickpea / Veg Roast</li>
+<li>Side: Rice / Naan</li>
+<li>Snack: Falafel / Pakora / Veg Samosa</li>
+<li>Veg: Aloo Gobi / Bhindi / Saag Aloo</li>
+<li>Dessert: Fruit / Rice Pudding / Cupcake</li></ul></div>
+<div class="menu-card"><h3>Deluxe — £12.99</h3><ul>
+<li>Main: Chicken Tikka Pie / Roast / Vegan Roast / Meatball Curry</li>
+<li>Side: Rice / Wedges / Naan</li>
+<li>Snack: Wings / Samosa / Pakora</li>
+<li>Dessert: Brownie / Gulab Jamun / Mango</li>
+<li>Drink: Soft Drink / Juice / Lassi</li></ul></div>
+<div class="menu-card"><h3>Corporate — £11.99</h3><ul>
+<li>Main: Chicken Curry / Lamb Biryani / Vegetable Curry</li>
+<li>Side: Rice / Naan</li>
+<li>Snack: Chicken / Veg Samosa / Spring Roll</li>
+<li>Salad: Mixed Leaf / Desi Salad</li>
+<li>Dessert: Rice Pudding / Gulab Jamun / Cupcake</li></ul></div>
+</div>
+</section>
+
+<section id="menu" class="container">
+<h2>Full Menu Highlights</h2>
+<div class="menu-grid">
+<div class="menu-card"><h3>Starters & Snacks</h3><ul>
+<li>Chicken Tikka, Tandoori Chicken, Fish Bites, Pakora, Spring Rolls</li></ul></div>
+<div class="menu-card"><h3>Mains</h3><ul>
+<li>Chicken Curry, Lamb Curry, Beef Bhunna, Chicken Jalfrezi, Biryani</li></ul></div>
+<div class="menu-card"><h3>Desserts</h3><ul>
+<li>Rice Pudding, Gulab Jamun, Brownie, Caramel Tart, Fruit Platter</li></ul></div>
+<div class="menu-card"><h3>Drinks</h3><ul>
+<li>Mocktails, Juices, Lassi, Soft Drinks, Coffee/Tea</li></ul></div>
+</div>
+</section>
+
+<section id="contact" class="container">
+<h2>Contact & Booking</h2>
+<form action="mailto:ayzaancateringltd@hotmail.com" method="post" enctype="text/plain">
+<label>Name:</label><input type="text" name="name" required>
+<label>Email:</label><input type="email" name="email" required>
+<label>Message:</label><textarea name="message" rows="5" required></textarea>
+<input type="submit" value="Send Message">
+</form>
+<p style="text-align:center;margin-top:1rem">
+📞 07958 534709<br>
+✉️ ayzaancateringltd@hotmail.com
+</p>
+</section>
+
+<footer>
+<p>&copy; 2025 Ayzaan Catering | All Rights Reserved</p>
+</footer>
+</body></html>"""
+
+# ---------------- Save HTML ----------------
+html_path = os.path.join(project, "index.html")
+with open(html_path,"w",encoding="utf-8") as f: f.write(html)
+
+# ---------------- Zip ----------------
+zipname = "AyzaanCateringWebsite.zip"
+with ZipFile(zipname,"w") as z:
+    z.write(html_path, arcname="index.html")
+    for fn in os.listdir(img_dir):
+        z.write(os.path.join(img_dir,fn), arcname=f"images/{fn}")
+print("✅ Created:", zipname)
