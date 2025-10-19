@@ -1,0 +1,300 @@
+# make_ayzaan_zip.py
+import os
+from zipfile import ZipFile
+from PIL import Image, ImageDraw, ImageFont
+
+# ---------- CONFIG ----------
+PROJECT_DIR = 'AyzaanCateringWebsite'
+IMAGES_DIR = os.path.join(PROJECT_DIR, 'images')
+ZIP_NAME = 'AyzaanCateringWebsite.zip'
+PHONE = '07958534709'   # as requested (no spaces)
+EMAIL = 'ayzaancateringltd@hotmail.com'
+# ----------------------------
+
+os.makedirs(IMAGES_DIR, exist_ok=True)
+
+def create_placeholder(path, size=(1000,600), bg=(18,18,18), text=None, font_size=36):
+    img = Image.new('RGB', size, bg)
+    draw = ImageDraw.Draw(img)
+    # try a common font, fallback to default
+    font = None
+    for font_name in ("DejaVuSans-Bold.ttf", "arial.ttf"):
+        try:
+            font = ImageFont.truetype(font_name, font_size)
+            break
+        except Exception:
+            font = None
+    if font is None:
+        font = ImageFont.load_default()
+    if text:
+        lines = text.split("\n")
+        # compute total text height
+        total_h = sum(draw.textsize(line, font=font)[1] for line in lines) + (len(lines)-1)*8
+        y = (size[1] - total_h) // 2
+        for line in lines:
+            w,h = draw.textsize(line, font=font)
+            draw.text(((size[0]-w)//2, y), line, fill=(255,215,0), font=font)
+            y += h + 8
+    img.save(path)
+
+# create placeholders
+create_placeholder(os.path.join(IMAGES_DIR, 'logo.png'), (400,400), text="Ayzaan\nCatering", font_size=48)
+create_placeholder(os.path.join(IMAGES_DIR, 'hero.jpg'), (1400,700), text="Ayzaan Catering\nDelivering Exquisite Catering", font_size=48)
+
+# ---------- Full HTML content ----------
+html = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ayzaan Catering — Premium Services</title>
+<style>
+  html {{ scroll-behavior:smooth; }}
+  body {{ margin:0; font-family:Arial,Helvetica,sans-serif; background:#0f0f0f; color:#eee; }}
+  nav {{ display:flex; align-items:center; justify-content:space-between; padding:0.8rem 1.2rem; background:#070707; position:sticky; top:0; z-index:1000; border-bottom:1px solid rgba(255,215,0,0.06); }}
+  nav .logo img {{ height:56px; border-radius:6px; }}
+  nav ul {{ display:flex; gap:0.6rem; list-style:none; margin:0; padding:0; }}
+  nav a {{ color:#fff; text-decoration:none; font-weight:600; padding:0.35rem 0.6rem; border-radius:6px; }}
+  nav a:hover {{ background:#ffd700; color:#111; }}
+  .hero {{ text-align:center; padding:5.5rem 1rem; background:linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.35)), url('images/hero.jpg') center/cover no-repeat; }}
+  .hero h1 {{ color:#ffd700; margin:0 0 .4rem; font-size:2.4rem; }}
+  .hero p {{ color:#f6e9b3; max-width:900px; margin:0 auto 1rem; }}
+  .button {{ display:inline-block; padding:.6rem 1rem; border-radius:8px; font-weight:700; text-decoration:none; }}
+  .button.primary {{ background:#ffd700; color:#111; }}
+  .container {{ max-width:1200px; margin:0 auto; padding:2rem 1rem; }}
+  h2 {{ color:#ffd700; text-align:center; }}
+  .menu-grid {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.2rem; margin-top:1rem; }}
+  .menu-card {{ padding:1.1rem; border-radius:10px; border:2px solid #ffd700; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); box-shadow:0 6px 20px rgba(0,0,0,0.5); }}
+  .menu-card h3 {{ margin:0 0 .5rem; color:#ffd700; }}
+  .menu-card p, .menu-card ul {{ color:#e9e3d6; margin:0; line-height:1.5; }}
+  .menu-card ul {{ padding-left:1rem; margin-top:.6rem; }}
+  .menu-card ul li {{ margin:0.3rem 0; }}
+  form {{ max-width:720px; margin:0 auto; }}
+  input, textarea {{ width:100%; padding:.8rem; margin-bottom:.8rem; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:#111; color:#fff; }}
+  input[type=submit] {{ background:#ffd700; color:#111; padding:.8rem 1rem; border-radius:8px; border:none; font-weight:700; cursor:pointer; }}
+  footer {{ text-align:center; padding:1.2rem; background:#070707; color:#d0c9b6; margin-top:2rem; }}
+  @media (max-width:700px) {{ .hero h1 {{ font-size:1.8rem; }} nav ul {{ display:none; }} }}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="logo"><img src="images/logo.png" alt="Ayzaan logo"></a>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#packages">Event Packages</a></li>
+    <li><a href="#tiffin">Tiffin Boxes</a></li>
+    <li><a href="#menu">Full Menu</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="home" class="hero">
+  <h1>Ayzaan Catering</h1>
+  <p>Delivering exquisite catering for every occasion</p>
+  <a href="#packages" class="button primary">View Packages</a>
+</section>
+
+<section id="packages" class="container">
+  <h2>Event Packages (per person)</h2>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <h3>Silver — £15.00</h3>
+      <p>Choose 1 Starter • 1 Main • 1 Side • 1 Dessert</p>
+      <ul>
+        <li>Starters: Samosa (Lamb or Vegetable), Vegetable Pakora, Spring Rolls, Chicken Dumplings</li>
+        <li>Mains: Chicken Curry, Lamb Curry, Beef Bhunna, Chicken Stir Fry Noodles</li>
+        <li>Sides: Pillau Rice, Naan, Bombay Aloo</li>
+        <li>Desserts: Rice Pudding, Gulab Jamun, Cupcake</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Gold — £18.99</h3>
+      <p>Choose 2 Starters • 2 Mains • 2 Sides • 1 Dessert</p>
+      <ul>
+        <li>Starters: Chicken Wings (Tandoori/Naga), Sheek Kebab (Lamb/Chicken), Falafel Wraps, Samosa (Lamb or Vegetable)</li>
+        <li>Mains: Lamb Biryani, Chicken Jalfrezi, Beef Bhunna, Chickpea Curry, Vegan Pizza</li>
+        <li>Sides: Pillau Rice, Saag Paneer, Mixed Salad, Onion Rings, Naan</li>
+        <li>Desserts: Caramel Tart, Chocolate Brownie, Gajar Halwa, Fresh Fruit Platter</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Platinum — £24.99</h3>
+      <p>Choose 3 Starters • 3 Mains • 3 Sides • 2 Desserts • Drinks</p>
+      <ul>
+        <li>Starters: BBQ Wings, Chicken Tikka, Grilled Lamb Chops, Vegetable Pakoras, Tuna Sandwich Bites</li>
+        <li>Mains: King Prawn Curry, Lamb Chop Bhunna, Chicken Tikka Pie, Roast Chicken, Vegan Roast</li>
+        <li>Sides: Aloo Gobi, Mushroom Bhuna, Tarka Daal, Potato Wedges, Mixed Desi Salad, Pillau Rice / Naan</li>
+        <li>Desserts: School Cake, Gulab Jamun with Ice Cream, Fresh Mango, Chocolate Brownie</li>
+      </ul>
+      <p style="font-style:italic;margin-top:.6rem;">Note: Chicken and lamb curry dishes can be changed to your preference. Discounts may be available on large orders.</p>
+    </div>
+  </div>
+</section>
+
+<section id="tiffin" class="container">
+  <h2>Tiffin Meal Boxes</h2>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <h3>Classic — £8.99</h3>
+      <ul>
+        <li>Main: Chicken Curry / Lamb Curry / Beef Bhunna / Vegetable Curry</li>
+        <li>Side: Pillau Rice / Naan</li>
+        <li>Snack: Samosa (Lamb or Vegetable) / Pakora</li>
+        <li>Salad: Mixed Leaf / Desi Salad</li>
+        <li>Dessert: Gulab Jamun / Cupcake / Rice Pudding</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Premium — £10.99</h3>
+      <ul>
+        <li>Main: Chicken Jalfrezi / Lamb Jalfrezi / Chickpea Curry / Vegetable Stir Fry</li>
+        <li>Side: Pillau Rice / Fried Rice / Naan</li>
+        <li>Snack: Spring Roll / Chicken Dumplings / Vegetable Pakora</li>
+        <li>Vegetable: Aloo Gobi / Bhindi Bhaji / Saag Paneer</li>
+        <li>Dessert: Caramel Tart / Chocolate Brownie / Fresh Fruit</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Vegan — £9.99</h3>
+      <ul>
+        <li>Main: Vegan Chilli / Chickpea Curry / Mixed Veg Roast</li>
+        <li>Side: Pillau Rice / Brown Rice / Naan</li>
+        <li>Snack: Falafel Wrap / Vegetable Pakora / Samosa (Vegetable)</li>
+        <li>Vegetable: Aloo Gobi / Bhindi Bhaji / Saag Aloo</li>
+        <li>Dessert: Fresh Fruit / Rice Pudding / Cupcake</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Deluxe — £12.99</h3>
+      <ul>
+        <li>Main: Chicken Tikka Pie / Roast Chicken / Vegan Roast / Meatball Curry</li>
+        <li>Side: Pillau Rice / Potato Wedges / Fried Rice / Naan</li>
+        <li>Snack: Chicken Wings / Samosa / Vegetable Pakora</li>
+        <li>Dessert: Chocolate Brownie / Gulab Jamun / Fresh Mango</li>
+        <li>Drink: Soft Drink / Juice / Lassi</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Corporate — £11.99</h3>
+      <ul>
+        <li>Main: Chicken Curry / Lamb Biryani / Vegetable Curry / Chickpea Curry</li>
+        <li>Side: Pillau Rice / Naan</li>
+        <li>Snack: Chicken Samosa / Vegetable Samosa / Spring Roll</li>
+        <li>Salad: Mixed Leaf / Desi Salad</li>
+        <li>Dessert: Rice Pudding / Gulab Jamun / Cupcake</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="container">
+  <h2>Full Menu</h2>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <h3>Starters & Snacks</h3>
+      <ul>
+        <li>Vegetable Samosa, Chicken Samosa, Vegetable Pakora, Chicken Dumplings, Spring Rolls, Sheek Kebab (Lamb/Chicken), Tandoori Wings, Naga Chicken Wings, Prawn Crackers</li>
+        <li>Chicken Tikka, Tandoori Chicken, Fish Pakora / Fish Bites</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Indian & Bangladeshi Mains</h3>
+      <ul>
+        <li>Chicken Curry, Lamb Curry, Beef Bhunna, Chicken Jalfrezi, Lamb Jalfrezi, Chicken Biryani, Lamb Biryani, Fish Curry, King Prawn Curry, Mutton Curry, Lamb Chop Bhunna, Saag with Chicken/Lamb/Prawns</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Asian Delights</h3>
+      <ul>
+        <li>Chicken Stir Fry Noodles, Beef Stir Fry Noodles, Shrimp Stir Fry Noodles, Egg Fried Noodles, Chicken Fried Rice, Beef Fried Rice, Shrimp Fried Rice, Chicken Chow Mein, Beef Chow Mein</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Fusion Specials</h3>
+      <ul>
+        <li>Roast Chicken, Chicken Pasta, Tuna Pasta Bake, Spaghetti & Meatballs, Meatball Curry, Chicken Mushroom Pie, Chicken Tikka Pie, Hotdogs, Burgers, BBQ Mutton Ribs, BBQ Wings, Grilled Lamb Chops</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Vegan & Vegetarian</h3>
+      <ul>
+        <li>Cauliflower Curry, Vegan Chilli, Chickpea Curry, Falafel Wraps, Vegan Pizza, Mixed Veg Roast, Aloo Gobi, Bombay Aloo, Chana Masala, Saag Aloo, Bhindi Bhaji, Tarka Daal, Mushroom Bhuna, Paneer Tikka, Chilli Paneer</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Sandwiches & Wraps</h3>
+      <ul>
+        <li>Chicken Mayo, Chicken Tikka, Smoked Salmon & Cottage Cheese, Tuna & Sweetcorn, Egg Sandwich, Cheese & Cucumber, Turkey Sandwich, Vegan Sandwich, Strawberry & Cream</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Desserts & Fruits</h3>
+      <ul>
+        <li>Fresh Fruit Platter, Rice Pudding, Vermicelli, Gulab Jamun, Gajar Halwa with Ice Cream, Chocolate Brownie, School Cake, Caramel Tart, Cupcakes</li>
+      </ul>
+    </div>
+
+    <div class="menu-card">
+      <h3>Drinks</h3>
+      <ul>
+        <li>Mocktails: Red Lady, Blue Lady</li>
+        <li>Juices: Mango, Strawberry, Orange, Apple, Lychee, Pineapple, Tropical</li>
+        <li>Lassi: Mango, Sweet, Salted</li>
+        <li>Soft Drinks: Coke, Fanta, 7Up, Pepsi, Water, Red Bull</li>
+        <li>Wine/Beer/Cocktails on request</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="container">
+  <h2>Contact & Booking</h2>
+  <div class="form-wrap">
+    <form action="mailto:{EMAIL}" method="post" enctype="text/plain">
+      <label for="name">Name</label><br>
+      <input id="name" name="name" type="text" required><br>
+      <label for="email">Email</label><br>
+      <input id="email" name="email" type="email" required><br>
+      <label for="message">Message (include date, guest count, location)</label><br>
+      <textarea id="message" name="message" rows="5" required></textarea><br>
+      <input type="submit" value="Send Message">
+    </form>
+  </div>
+  <p style="text-align:center;margin-top:1rem;">📞 {PHONE} &nbsp; | &nbsp; ✉️ <a href="mailto:{EMAIL}" style="color:#ffd700">{EMAIL}</a></p>
+</section>
+
+<footer>
+  <p>&copy; 2025 Ayzaan Catering Ltd | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>
+"""
+
+# write HTML
+html_path = os.path.join(PROJECT_DIR, "index.html")
+with open(html_path, "w", encoding="utf-8") as f:
+    f.write(html)
+
+# create zip
+with ZipFile(ZIP_NAME, "w") as z:
+    # add html
+    z.write(html_path, arcname="index.html")
+    # add images
+    for file_name in os.listdir(IMAGES_DIR):
+        z.write(os.path.join(IMAGES_DIR, file_name), arcname=f"images/{file_name}")
+
+print(f"✅ Done — created: {ZIP_NAME}")
