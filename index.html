@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ayzaan Catering — Flavours from Around the World</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sage:#7bb992;
+  --gold:#c59d5f;
+  --cream:#fbfbf8;
+  --muted:#6b6b6b;
+  --dark:#2f3e2f;
+}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:linear-gradient(180deg,var(--cream),#fff 40%);color:var(--dark);}
+h1,h2,h3{font-family:'Playfair Display',serif;color:var(--dark);}
+.container{max-width:1100px;margin:0 auto;padding:0 20px;}
+.header{backdrop-filter:blur(8px);background:#ffffffcf;border-bottom:1px solid rgba(0,0,0,0.04);position:sticky;top:0;z-index:40;}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--sage),#5fa86a);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px}
+.card{background:rgba(255,255,255,0.95);backdrop-filter:blur(6px);border-radius:12px;padding:18px;margin-bottom:18px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+.btn{padding:10px 16px;border-radius:10px;font-weight:600;cursor:pointer;border:0}
+.btn-primary{background:var(--sage);color:#fff;box-shadow:0 8px 24px rgba(91,160,112,0.12)}
+.btn-outline{background:transparent;border:2px solid var(--sage);color:var(--sage)}
+nav a{margin-left:18px;color:var(--muted);font-weight:600;text-decoration:none}
+nav a:hover{color:var(--sage)}
+.section-title{font-size:1.6rem;margin-bottom:12px}
+.small{font-size:0.95rem;color:var(--muted)}
+.form-input{width:100%;padding:10px;border-radius:8px;border:1px solid #e2e8f0;margin-top:8px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.grid-3{grid-template-columns:1fr}nav{display:none}}
+.footer{background:#f6fff6;padding:18px;text-align:center;margin-top:24px;border-top:1px solid rgba(0,0,0,0.04)}
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:900px){.menu-grid{grid-template-columns:1fr}}
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:linear-gradient(90deg,var(--sage),#66b36b);color:white;font-weight:700;font-size:0.9rem}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px">
+    <div class="brand">
+      <div class="logo">A</div>
+      <div>
+        <div style="font-weight:700;font-size:18px">Ayzaan Catering</div>
+        <div class="small">Flavours from Around the World</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#packages">Packages</a>
+      <a href="#tiffin">Tiffin</a>
+      <a href="#menu">Full Menu</a>
+      <a href="#create">Create</a>
+      <a href="#feedback">Feedback</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container" style="padding-top:22px;padding-bottom:28px">
+
+  <section class="card" style="text-align:center;margin-top:12px">
+    <div class="badge">Premium Catering</div>
+    <h1 style="font-size:2rem;margin:12px 0 8px">Flavours from Around the World, Served with Love</h1>
+    <p class="small" style="max-width:800px;margin:0 auto 14px">We cater for weddings, corporate events, private parties, festivals and more. Custom packages, bespoke menu choices, and friendly professional service. Chicken & lamb curry dishes can be changed to any curry style or Bhunna.</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:12px">
+      <button class="btn btn-outline" onclick="location.hash='#menu'">Explore Menu</button>
+      <button class="btn btn-primary" onclick="location.hash='#contact'">Book Your Event</button>
+    </div>
+  </section>
+
+  <section id="packages" style="margin-top:18px">
+    <h2 class="section-title">Event Packages (per person)</h2>
+    <div class="grid-3">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <strong>Silver</strong><span style="font-weight:700">£15.00</span>
+        </div>
+        <div class="small" style="margin-top:6px">Choose 1 Starter • 1 Main • 1 Side • 1 Dessert</div>
+        <ul class="small" style="margin-top:8px">
+          <li><b>Starters:</b> Samosa (Veg/Lamb), Vegetable Pakora, Spring Rolls, Chicken Dumplings, Tandoori Chicken, Chicken Tikka, Fish Bites, Chilli Bites, Prawn Puri</li>
+          <li><b>Mains:</b> Chicken Curry / Lamb Curry / Beef Bhunna / Chicken Stir Fry Noodles</li>
+          <li><b>Sides:</b> Pillau Rice, Naan, Bombay Aloo</li>
+          <li><b>Desserts:</b> Rice Pudding, Gulab Jamun, Cupcake</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <strong>Gold</strong><span style="font-weight:700">£18.99</span>
+        </div>
+        <div class="small" style="margin-top:6px">Choose 2 Starters • 2 Mains • 2 Sides • 1 Dessert</div>
+        <ul class="small" style="margin-top:8px">
+          <li><b>Starters:</b> Chicken Wings (Tandoori/Naga), Sheek Kebab (Lamb/Chicken), Falafel Wraps, Samosa, Tandoori Chicken, Chicken Tikka, Fish Bites, Chilli Bites, Prawn Puri</li>
+          <li><b>Mains:</b> Lamb Biryani, Chicken Jalfrezi, Beef Bhunna, Chickpea Curry, Vegan Pizza</li>
+          <li><b>Sides:</b> Pillau Rice, Saag Paneer, Mixed Salad, Onion Rings, Naan</li>
+          <li><b>Desserts:</b> Caramel Tart, Chocolate Brownie, Gajar Halwa, Fresh Fruit Platter</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <strong>Platinum</strong><span style="font-weight:700">£24.99</span>
+        </div>
+        <div class="small" style="margin-top:6px">Choose 3 Starters • 3 Mains • 3 Sides • 2 Desserts • Drinks</div>
+        <ul class="small" style="margin-top:8px">
+          <li><b>Starters:</b> BBQ Wings, Chicken Tikka, Grilled Lamb Chops, Vegetable Pakoras, Tuna Sandwich Bites, Tandoori Chicken, Fish Bites, Chilli Bites, Prawn Puri</li>
+          <li><b>Mains:</b> King Prawn Curry, Lamb Chop Bhunna, Chicken Tikka Pie, Roast Chicken, Vegan Roast</li>
+          <li><b>Sides:</b> Aloo Gobi, Mushroom Bhuna, Tarka Daal, Potato Wedges, Mixed Desi Salad, Pillau Rice, Naan</li>
+          <li><b>Desserts:</b> School Cake, Gulab Jamun with Ice Cream, Fresh Mango, Chocolate Brownie</li>
+        </ul>
+        <div class="small" style="margin-top:8px"><em>*Chicken and Lamb curry dishes can be changed to any style curry or Bhunna.</em></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tiffin" style="margin-top:20px">
+    <h2 class="section-title">Tiffin Meal Boxes</h2>
+    <div class="card small">
+      <h4 style="margin:0 0 6px 0">Classic — £8.99</h4>
+      <div class="small"><b>Main:</b> Chicken Curry / Lamb Curry / Beef Bhunna / Vegetable Curry</div>
+      <div class="small"><b>Side:</b> Pillau Rice / Naan</div>
+      <div class="small"><b>Snack:</b> Samosa (Lamb/Vegetable) / Pakora</div>
+      <div class="small"><b>Salad:</b> Mixed Leaf / Desi Salad</div>
+      <div class="small"><b>Dessert:</b> Gulab Jamun / Cupcake / Rice Pudding</div>
+    </div>
+    <div class="card small">
+      <h4 style="margin:0 0 6px 0">Premium — £10.99</h4>
+      <div class="small"><b>Main:</b> Chicken Jalfrezi / Lamb Jalfrezi / Chickpea Curry / Vegetable Stir Fry</div>
+      <div class="small"><b>Side:</b> Pillau Rice / Fried Rice / Naan</div>
+      <div class="small"><b>Snack:</b> Spring Roll / Chicken Dumplings / Vegetable Pakora</div>
+      <div class="small"><b>Vegetable:</b> Aloo Gobi / Bhindi Bhaji / Saag Paneer</div>
+      <div class="small"><b>Dessert:</b> Caramel Tart / Chocolate Brownie / Fresh Fruit</div>
+    </div>
+    <div class="card small">
+      <h4 style="margin:0 0 6px 0">Vegan — £9.99</h4>
+      <div class="small"><b>Main:</b> Vegan Chilli / Chickpea Curry / Mixed Veg Roast</div>
+      <div class="small"><b>Side:</b> Pillau Rice / Brown Rice / Naan</div>
+      <div class="small"><b>Snack:</b> Falafel Wrap / Vegetable Pakora / Vegetable Samosa</div>
+      <div class="small"><b>Vegetable:</b> Aloo Gobi / Bhindi Bhaji / Saag Aloo</div>
+      <div class="small"><b>Dessert:</b> Fresh Fruit / Rice Pudding / Cupcake</div>
+    </div>
+    <div class="card small">
+      <h4 style="margin:0 0 6px 0">Deluxe — £12.99</h4>
+      <div class="small"><b>Main:</b> Chicken Tikka Pie / Roast Chicken / Vegan Roast / Meatball Curry</div>
+      <div class="small"><b>Side:</b> Pillau Rice / Potato Wedges / Fried Rice / Naan</div>
+      <div class="small"><b>Snack:</b> Chicken Wings / Samosa / Vegetable Pakora</div>
+      <div class="small"><b>Dessert:</b> Chocolate Brownie / Gulab Jamun / Fresh Mango</div>
+      <div class="small"><b>Drink:</b> Soft Drink / Juice / Lassi</div>
+    </div>
+    <div class="card small">
+      <h4 style="margin:0 0 6px 0">Corporate — £11.99</h4>
+      <div class="small"><b>Main:</b> Chicken Curry / Lamb Biryani / Vegetable Curry / Chickpea Curry</div>
+      <div class="small"><b>Side:</b> Pillau Rice / Naan</div>
+      <div class="small"><b>Snack:</b> Chicken Samosa / Vegetable Samosa / Spring Roll</div>
+      <div class="small"><b>Salad:</b> Mixed Leaf / Desi Salad</div>
+      <div class="small"><b>Dessert:</b> Rice Pudding / Gulab Jamun / Cupcake</div>
+    </div>
+    <div class="small" style="text-align:center;margin-top:8px"><em>All tiffin boxes are fully customisable. Chicken and lamb curry dishes can be changed to any style curry or Bhunna.</em></div>
+  </section>
+
+  <section id="menu" style="margin-top:20px">
+    <h2 class="section-title">Full Menu</h2>
+    <div class="menu-grid">
+      <div class="card">
+        <h3>Starters & Snacks</h3>
+        <ul class="small" style="margin-top:8px">
+          <li>Vegetable Samosa</li>
+          <li>Chicken Samosa</li>
+          <li>Vegetable Pakora</li>
+          <li>Chicken Dumplings</li>
+          <li>Spring Rolls</li>
+          <li>Sheek Kebab (Lamb/Chicken)</li>
+          <li>Tandoori Wings</li>
+          <li>Naga Chicken Wings</li>
+          <li>Prawn Crackers</li>
+          <li>Tandoori Chicken</li>
+          <li>Chicken Tikka</li>
+          <li>Fish Bites</li>
+          <li>Chilli Bites</li>
+          <li>Prawn Puri</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Indian & Bangladeshi Mains</h3>
+        <ul class="small" style="margin-top:8px">
+          <li>Chicken Curry</li>
+          <li>Lamb Curry</li>
+          <li>Beef Bhunna</li>
+          <li>Chicken Jalfrezi</li>
+          <li>Lamb Jalfrezi</li>
+          <li>Chicken Biryani</li>
+          <li>Lamb Biryani</li>
+          <li>Fish Curry</li>
+          <li>King Prawn Curry</li>
+          <li>Mutton Curry</li>
+          <li>Lamb Chop Bhunna</li>
+          <li>Saag with Chicken/Lamb/Prawns</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Asian Delights</h3>
+        <ul class="small" style="margin-top:8px">
+          <li>Chicken Stir Fry Noodles</li>
+          <li>Beef Stir Fry Noodles</li>
+          <li>Shrimp Stir Fry Noodles</li>
+          <li>Egg Fried Noodles</li>
+          <li>Chicken Fried Rice</li>
+          <li>Beef Fried Rice</li>
+          <li>Shrimp Fried Rice</li>
+          <li>Chicken Chow Mein</li>
+          <li>Beef Chow Mein</li>
+      </ul>
+      </div>
+      <div class="card">
+        <h3>Fusion Specials</h3>
+        <ul class="small" style="margin-top:8px">
+          <li>Roast Chicken</li>
+          <li>Chicken Pasta</li>
+          <li>Tuna Pasta Bake</li>
+          <li>Spaghetti & Meatballs</li>
+          <li>Meatball Curry</li>
+          <li>Chicken Mushroom Pie</li>
+          <li>Chicken Tikka Pie</li>
+          <li>Hotdogs</li>
+          <li>Burgers</li>
+          <li>BBQ Mutton Ribs</li>
+          <li>BBQ Wings</li>
+          <li>Grilled Lamb Chops</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Vegan & Vegetarian</h3>
+        <ul class="small" style="margin-top:8px">
+          <li>Cauliflower Curry</li>
+          <li>Vegan Chilli</li>
+          <li>Chickpea Curry</li>
+          <li>Falafel Wraps</li>
+          <li>Vegan Pizza</li>
+          <li>Mixed Veg Roast</li>
+          <li>Aloo Gobi</li>
+          <li>Bombay Aloo</li>
+          <li>Chana Masala</li>
+          <li>Saag Aloo</li>
+          <li>Bhindi Bhaji</li>
+          <li>Tarka Daal</li>
+          <li>Mushroom Bhuna</li>
+          <li>Paneer Tikka</li>
+          <li>Chilli Paneer</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Sandwiches & Wraps</h3>
+        <ul class="small" style="margin-top:8px">
+          <li>Chicken Mayo</li>
+          <li>Chicken Tikka</li>
+          <li>Smoked Salmon & Cottage Cheese</li>
+          <li>Tuna & Sweetcorn</li>
+          <li>Egg Sandwich</li>
+          <li>Cheese & Cucumber</li>
+          <li>Turkey Sandwich</li>
+          <li>Vegan Sandwich</li>
+          <li>Strawberry & Cream</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Desserts & Fruits</h3>
+        <ul class="small" style="margin-top:8px">
+          <li>Fresh Fruit Platter</li>
+          <li>Rice Pudding</li>
+          <li>Vermicelli</li>
+          <li>Gulab Jamun</li>
+          <li>Gajar Halwa with Ice Cream</li>
+          <li>Chocolate Brownie</li>
+          <li>School Cake</li>
+          <li>Caramel Tart</li>
+          <li>Cupcakes</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Drinks</h3>
+        <ul class="small" style="margin-top:8px">
+          <li>Mocktails: Red Lady, Blue Lady</li>
+          <li>Juices: Mango, Strawberry, Orange, Apple, Lychee, Pineapple, Tropical</li>
+          <li>Lassi: Mango, Sweet, Salted</li>
+          <li>Soft Drinks: Coke, Fanta, 7Up, Pepsi, Water, Red Bull</li>
+          <li>Wine/Beer/Cocktails on request</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="create" style="margin-top:20px">
+    <h2 class="section-title">Create Your Own Package</h2>
+    <div class="card">
+      <form id="customForm">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <label class="small">Starters</label>
+            <select name="starters" multiple class="form-input" size="8">
+              <option>Vegetable Samosa</option>
+              <option>Chicken Samosa</option>
+              <option>Vegetable Pakora</option>
+              <option>Spring Rolls</option>
+              <option>Chicken Dumplings</option>
+              <option>Tandoori Chicken</option>
+              <option>Chicken Tikka</option>
+              <option>Fish Bites</option>
+              <option>Chilli Bites</option>
+              <option>Prawn Puri</option>
+            </select>
+          </div>
+          <div>
+            <label class="small">Mains</label>
+            <select name="mains" multiple class="form-input" size="8">
+              <option>Chicken Curry</option>
+              <option>Lamb Curry</option>
+              <option>Beef Bhunna</option>
+              <option>Chicken Jalfrezi</option>
+              <option>Lamb Jalfrezi</option>
+              <option>Chicken Biryani</option>
+              <option>Lamb Biryani</option>
+              <option>King Prawn Curry</option>
+              <option>Vegan Roast</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+          <div>
+            <label class="small">Sides</label>
+            <select name="sides" multiple class="form-input" size="6">
+              <option>Pillau Rice</option>
+              <option>Naan</option>
+              <option>Aloo Gobi</option>
+              <option>Bombay Aloo</option>
+              <option>Saag Paneer</option>
+              <option>Mixed Salad</option>
+            </select>
+          </div>
+          <div>
+            <label class="small">Desserts</label>
+            <select name="desserts" multiple class="form-input" size="6">
+              <option>Rice Pudding</option>
+              <option>Gulab Jamun</option>
+              <option>Chocolate Brownie</option>
+              <option>Caramel Tart</option>
+              <option>Fresh Fruit</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:12px;align-items:center">
+          <label class="small" style="margin:0">Event Type</label>
+          <select name="eventType" class="form-input" style="width:200px">
+            <option>Wedding</option><option>Corporate</option><option>Private Party</option><option>Festival</option><option>Other</option>
+          </select>
+          <button type="button" class="btn btn-primary" onclick="previewPackage()">Preview</button>
+          <button type="button" class="btn btn-outline" onclick="submitPackage()">Submit Request</button>
+        </div>
+      </form>
+
+      <div id="packagePreview" style="margin-top:12px" class="small">No selection yet.</div>
+    </div>
+  </section>
+
+  <section id="feedback" style="margin-top:20px">
+    <h2 class="section-title">Customer Feedback</h2>
+    <div class="card">
+      <form id="fbForm">
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <input name="fbName" placeholder="Your name" class="form-input" required style="flex:1 1 200px">
+          <input name="fbEmail" placeholder="Email (optional)" class="form-input" style="flex:1 1 200px">
+        </div>
+        <div style="margin-top:10px;max-width:400px">
+          <label class="small">Rating</label>
+          <select name="fbRating" class="form-input" style="width:120px">
+            <option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option>
+          </select>
+        </div>
+        <div style="margin-top:10px">
+          <textarea name="fbMessage" rows="3" class="form-input" placeholder="Your feedback" required></textarea>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap">
+          <button type="submit" class="btn btn-primary">Submit Feedback</button>
+          <button type="button" class="btn btn-outline" onclick="clearFeedback()">Clear All</button>
+        </div>
+      </form>
+
+      <div id="feedbackList" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <section id="contact" style="margin-top:20px">
+    <h2 class="section-title">Contact & Booking</h2>
+    <div class="card" style="text-align:center">
+      <p class="small" style="margin:4px 0"><strong>Ayzaan Catering Ltd</strong></p>
+      <p class="small" style="margin:4px 0">Telephone / WhatsApp: <a href="tel:07958534709">07958 534709</a></p>
+      <p class="small" style="margin:4px 0">Email: <a href="mailto:ayzaancateringltd@hotmail.com">ayzaancateringltd@hotmail.com</a></p>
+      <p class="small" style="margin:6px 0"><em>We cater for Middle Eastern, British and many more cuisines. Discounts available on large orders.</em></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="small">© 2025 Ayzaan Catering Ltd — Flavours from Around the World, Served with Love</div>
+  </footer>
+</main>
+
+<script>
+function getVals(select){
+  return Array.from(select.selectedOptions||[]).map(o=>o.value);
+}
+function previewPackage(){
+  const f=document.getElementById('customForm');
+  const starters=getVals(f.starters);
+  const mains=getVals(f.mains);
+  const sides=getVals(f.sides);
+  const desserts=getVals(f.desserts);
+  const eventType=f.eventType.value;
+  let html='<strong>Event:</strong> '+eventType+'<br>';
+  html+='<strong>Starters:</strong> '+(starters.length?starters.join(', '):'None')+'<br>';
+  html+='<strong>Mains:</strong> '+(mains.length?mains.join(', '):'None')+'<br>';
+  html+='<strong>Sides:</strong> '+(sides.length?sides.join(', '):'None')+'<br>';
+  html+='<strong>Desserts:</strong> '+(desserts.length?desserts.join(', '):'None');
+  document.getElementById('packagePreview').innerHTML=html;
+}
+function submitPackage(){
+  previewPackage();
+  alert('Thanks — your custom package request has been received. We will contact you to confirm price & availability.');
+  document.getElementById('customForm').reset();
+}
+
+// Feedback localStorage
+const fbForm=document.getElementById('fbForm');
+fbForm.addEventListener('submit',function(e){
+  e.preventDefault();
+  const name=this.fbName.value.trim();
+  const email=this.fbEmail.value.trim();
+  const rating=this.fbRating.value;
+  const msg=this.fbMessage.value.trim();
+  if(!name||!msg){ alert('Please enter your name and message.'); return; }
+  const list=JSON.parse(localStorage.getItem('ayzaan_feedback')||'[]');
+  list.push({name,email,rating,msg,date:new Date().toISOString()});
+  localStorage.setItem('ayzaan_feedback',JSON.stringify(list));
+  this.reset();
+  renderFeedback();
+});
+
+function renderFeedback(){
+  const list=JSON.parse(localStorage.getItem('ayzaan_feedback')||'[]');
+  const c=document.getElementById('feedbackList');
+  if(!list.length){ c.innerHTML='<div class="small">No feedback yet</div>'; return; }
+  c.innerHTML=list.slice().reverse().map(f=>`<div style="border-left:3px solid var(--sage);padding:10px;margin-bottom:8px"><div style="font-weight:700">${escapeHtml(f.name)} — ${'★'.repeat(f.rating)}</div><div class="small" style="margin-top:6px">${escapeHtml(f.msg)}</div></div>`).join('');
+}
+
+function clearFeedback(){ if(confirm('Clear all feedback stored in this browser?')){ localStorage.removeItem('ayzaan_feedback'); renderFeedback(); } }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[c])); }
+renderFeedback();
+</script>
+</body>
+</html>
